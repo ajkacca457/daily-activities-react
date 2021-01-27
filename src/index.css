@@ -6,3 +6,11 @@ padding: 0;
 .mynav h1 {
   font-size: 150%;
 }
+
+ul {
+  list-style-type: none;
+}
+
+ul li {
+margin-left: -30px;
+}
