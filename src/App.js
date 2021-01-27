@@ -43,22 +43,40 @@ if(this.state.item===""){
      id: uuidv4(),
      item:"",
      edititem: false,
-  }, ()=> console.log(this.state))
+  })
 }
 }
 
-handledelete=(e,id)=>{
-  if(e.target.classList.contains("del")){
-  console.log("handle delete")
-}}
+handledelete=(id)=>{
+const filteredItem= this.state.items.filter((item)=> {
+  return item.id !== id;
+})
+this.setState({
+  items:filteredItem
+})
+}
 
-handleedit=(e,id)=>{
-  if(e.target.classList.contains("edit")){
-  console.log("handle edit")
+handleedit=(id)=>{
+  const filteredItem= this.state.items.filter((item)=> {
+    return item.id !== id;
+  })
+  const itemtoedit=this.state.items.find((item)=>{
+    return item.id===id;
+  })
+
+  this.setState({
+    items:filteredItem,
+    id: id,
+    item:itemtoedit.name,
+    edititem: true
+  })
+
 }
-}
+
 clearlist=()=>{
-  console.log("clear list")
+  this.setState({
+    items: []
+  })
 }
 
   render(){
