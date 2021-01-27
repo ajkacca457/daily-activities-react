@@ -1,19 +1,12 @@
 import React, {Component} from 'react';
-
+import Navbar from "./components/navbar"
 
 class App extends Component{
-  constructor(props) {
-    super(props)
-    this.state={
-      name:"this is my name"
-    }
-  }
-
   render(){
     return (
       <div className="App">
-      <h1>Hello</h1>
-      <h1>This is working</h1>
+      <Navbar></Navbar>
+
       </div>
     );
   }
