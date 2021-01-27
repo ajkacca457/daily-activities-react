@@ -10,8 +10,7 @@ class App extends Component{
 constructor(props){
 super(props);
          this.state = {
-           items:[{id:1, name:"my first activity"},
-                  {id:2, name:"my second activity"}
+           items:[{id:1, name:"Default activity for day."},
                 ],
             id: uuidv4(),
             item:"",
@@ -19,12 +18,28 @@ super(props);
          };
       }
 
-handlechange=()=>{
-  console.log("handle change")
+handlechange=(e)=>{
+  const value= e.target.value;
+  this.setState({
+    item:value
+  })
 }
 handlesubmit=(e)=>{
   e.preventDefault();
-  console.log("handle submit")
+  const newItem={
+    id:this.state.id,
+    name:this.state.item
+  }
+
+const newItems=[...this.state.items,newItem];
+
+this.setState({
+   items:newItems,
+   id: uuidv4(),
+   item:"",
+   edititem: false,
+}, ()=>console.log(this.state))
+
 }
 
 handledelete=(e,id)=>{
@@ -48,12 +63,14 @@ clearlist=()=>{
       <Navbar></Navbar>
 
       <Activity
+      item={this.state.item}
       handlechange={this.handlechange}
       handlesubmit={this.handlesubmit}
       >
       </Activity>
 
       <Activitylist
+      items={this.state.items}
       handledelete={this.handledelete}
       handleedit={this.handleedit}
       clearlist={this.clearlist}
