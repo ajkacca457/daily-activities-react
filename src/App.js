@@ -24,6 +24,8 @@ handlechange=(e)=>{
     item:value
   })
 }
+
+
 handlesubmit=(e)=>{
   e.preventDefault();
   const newItem={
@@ -33,13 +35,16 @@ handlesubmit=(e)=>{
 
 const newItems=[...this.state.items,newItem];
 
-this.setState({
-   items:newItems,
-   id: uuidv4(),
-   item:"",
-   edititem: false,
-}, ()=>console.log(this.state))
-
+if(this.state.item===""){
+  alert("please enter a task")
+} else {
+  this.setState({
+     items:newItems,
+     id: uuidv4(),
+     item:"",
+     edititem: false,
+  }, ()=> console.log(this.state))
+}
 }
 
 handledelete=(e,id)=>{
